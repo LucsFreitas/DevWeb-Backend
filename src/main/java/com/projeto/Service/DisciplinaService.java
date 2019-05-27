@@ -17,14 +17,14 @@ public class DisciplinaService {
 	
 	public Disciplina salvarDisciplina (Disciplina disciplina) {
 		
-		if (disciplina != null && disciplina.getCodigo() != null) {
-			Disciplina disciplinaExist = disciplinaRepository.findById(disciplina.getCodigo()).orElse(null);
-			
-			if(disciplinaExist!=null) {
-				return null;
-			}
-		}
-		
+//		if (disciplina != null && disciplina.getCodigo() != null) {
+//			Disciplina disciplinaExist = disciplinaRepository.findById(disciplina.getCodigo()).orElse(null);
+//			
+//			if(disciplinaExist!=null) {
+//				return null;
+//			}
+//		}
+//		
 		return disciplinaRepository.save(disciplina);
 	}
 	
@@ -37,7 +37,7 @@ public class DisciplinaService {
 		
 		if (disciplina != null && disciplina.getCodigo() != null) {
 			
-			Disciplina disciplinaExists = disciplinaRepository.findById(disciplina.getCodigo()).orElse(null);
+			Disciplina disciplinaExists = disciplinaRepository.findById(disciplina.getId()).orElse(null);
 			
 			if(disciplinaExists != null) {
 				return disciplinaRepository.save(disciplina);

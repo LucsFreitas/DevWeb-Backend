@@ -49,7 +49,7 @@ public class ProfessorRestController {
 	}
 	
 	@GetMapping(path="/{id}")
-	public ResponseEntity<Professor> consultarPorId(@PathVariable String id){
+	public ResponseEntity<Professor> consultarPorId(@PathVariable Long id){
 		
 		Professor p = professorService.consultarPorId(id);
 		

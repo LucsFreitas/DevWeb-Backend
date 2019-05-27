@@ -1,20 +1,38 @@
 package com.projeto.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="tb_disciplina")
 public class Disciplina {
 
 	@Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
+	private Long id;
+	
+	@NotBlank
+	@Column(unique=true)
 	private String codigo;
 	
+	@NotBlank
 	private String descricao;
 	
 	private Long qtdCreditos;
 	
 	public Disciplina() {
 		super();
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCodigo() {

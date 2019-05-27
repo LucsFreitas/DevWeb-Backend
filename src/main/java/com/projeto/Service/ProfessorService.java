@@ -20,13 +20,13 @@ public class ProfessorService {
 	
 	public Professor salvarProfessor (Professor professor) {
 		
-		if (professor != null && professor.getMatricula() != null) {
-			Professor professorExist = professorRepository.findById(professor.getMatricula()).orElse(null);
-			
-			if(professorExist!=null) {
-				return null;
-			}
-		}
+//		if (professor != null) {
+//			Professor professorExist = professorRepository.findById(professor.getId()).orElse(null);
+//			
+//			if(professorExist!=null) {
+//				return null;
+//			}
+//		}
 		
 		return professorRepository.save(professor);
 	}
@@ -35,19 +35,19 @@ public class ProfessorService {
 		
 		List<Professor> lista = professorRepository.findAll();
 		
-		if (lista.size() == 0) {
-			dados.inicializar();
+//		if (lista.size() == 0) {
+//			dados.inicializar();
 			lista = professorRepository.findAll();
-		}
+//		}
 		
 		return lista;
 	}
 	
 	public Professor editarProfessor(Professor professor) {
 		
-		if (professor != null && professor.getMatricula() != null) {
+		if (professor != null && professor.getId() != null) {
 			
-			Professor professorExists = professorRepository.findById(professor.getMatricula()).orElse(null);
+			Professor professorExists = professorRepository.findById(professor.getId()).orElse(null);
 			
 			if(professorExists != null) {
 				return professorRepository.save(professor);
@@ -57,7 +57,7 @@ public class ProfessorService {
 		return null;
 	}
 	
-	public Professor consultarPorId(String id) {
+	public Professor consultarPorId(Long id) {
 		return professorRepository.findById(id).orElse(null);
 	}
 }
