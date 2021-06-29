@@ -2,6 +2,7 @@ package com.projeto.Controller;
 
 import java.util.List;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,32 +20,20 @@ public class DisciplinaRestController {
 	DisciplinaService disciplinaService;
 	
 	@PostMapping
+	@ApiOperation(value = "Cria um novo registro de disciplina")
 	public ResponseEntity<Disciplina> criarDisciplina(@RequestBody Disciplina disciplina) {
-		
-		Disciplina d = disciplinaService.salvarDisciplina(disciplina);
-		
-		if (d != null) {
-			return new ResponseEntity<> (d, HttpStatus.OK);
-		}
-		return new ResponseEntity<> (HttpStatus.NOT_ACCEPTABLE);
+		return new ResponseEntity<> (disciplinaService.salvarDisciplina(disciplina), HttpStatus.CREATED);
 	}
 
 	@GetMapping
+	@ApiOperation(value = "Retorna a lista de disciplinas cadastradas")
 	public ResponseEntity<List<Disciplina>> listarDisciplina(){
-		
 		return new ResponseEntity<> (disciplinaService.listarDisciplinas(), HttpStatus.OK);
 	}
 
-	
 	@PutMapping
+	@ApiOperation(value = "Atualiza um registro de disciplina")
 	public ResponseEntity<Disciplina> editarDisciplina(@RequestBody Disciplina disciplina){
-		
-		Disciplina d = disciplinaService.editarDisciplina(disciplina);
-		
-		if (d != null) {
-			return new ResponseEntity<> (d, HttpStatus.OK);
-		}
-		return new ResponseEntity<> (HttpStatus.NOT_ACCEPTABLE);
-		
+		return new ResponseEntity<> (disciplinaService.editarDisciplina(disciplina), HttpStatus.OK);
 	}
 }
